@@ -2,26 +2,198 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+ * Editorial Environmental Intelligence
+ * A warm, typographically confident, data-journalism aesthetic.
+ * Think Financial Times meets Kinfolk -- serious, precise, human.
+ */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Paper -- warm off-white, like newsprint */
+  --paper: #f7f4ee;
+  --paper-warm: #efe9dd;
+  --paper-soft: #fbf9f4;
+
+  /* Ink -- deep blue-black, not pure black */
+  --ink: #1a1d24;
+  --ink-soft: #3f4450;
+  --ink-muted: #6b7280;
+  --ink-faint: #9ca3af;
+
+  /* Rule lines */
+  --rule: #dcd4c4;
+
+  /* Ember -- emissions, warnings (burnt sienna) */
+  --ember: #b8462b;
+  --ember-soft: #e08a70;
+  --ember-faint: #f5e0d6;
+
+  /* Moss -- savings, positive (muted, not neon) */
+  --moss: #4a6b3a;
+  --moss-soft: #8ba57a;
+  --moss-faint: #e2ebd8;
+
+  /* Slate -- cost, neutral data */
+  --slate: #3a5064;
+  --slate-soft: #7a8a9a;
+  --slate-faint: #dde3ea;
+
+  /* Ochre -- highlights, active state */
+  --ochre: #b8812b;
+  --ochre-soft: #d4a760;
+  --ochre-faint: #f2e8d0;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.dark {
+  --paper: #14161c;
+  --paper-warm: #1a1d24;
+  --paper-soft: #0e1015;
+
+  --ink: #ede8de;
+  --ink-soft: #b8b3a8;
+  --ink-muted: #8a8578;
+  --ink-faint: #555044;
+
+  --rule: #2a2d36;
+
+  --ember: #e08a70;
+  --ember-soft: #b8462b;
+  --ember-faint: #2e1f1a;
+
+  --moss: #8ba57a;
+  --moss-soft: #4a6b3a;
+  --moss-faint: #1f2a1a;
+
+  --slate: #7a8a9a;
+  --slate-soft: #3a5064;
+  --slate-faint: #1a222a;
+
+  --ochre: #d4a760;
+  --ochre-soft: #b8812b;
+  --ochre-faint: #2a1f10;
+}
+
+* {
+  border-color: var(--rule);
+}
+
+html {
+  font-family: var(--font-sans);
+  background: var(--paper);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "ss01", "ss02", "cv11";
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  min-height: 100vh;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+/* Typography refinements */
+.font-display {
+  font-feature-settings: "ss01", "liga", "dlig", "kern";
+  letter-spacing: -0.015em;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+/* Subtle paper texture */
+.paper-texture {
+  background-image:
+    radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.012) 1px, transparent 1px),
+    radial-gradient(circle at 0% 0%, rgba(0, 0, 0, 0.008) 1px, transparent 1px);
+  background-size: 24px 24px, 48px 48px;
+}
+
+.dark .paper-texture {
+  background-image:
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    radial-gradient(circle at 0% 0%, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+}
+
+/* Thin editorial rules */
+.rule-top { border-top: 1px solid var(--rule); }
+.rule-bottom { border-bottom: 1px solid var(--rule); }
+.rule-left { border-left: 1px solid var(--rule); }
+.rule-right { border-right: 1px solid var(--rule); }
+
+/* Fancy drop-cap */
+.drop-cap::first-letter {
+  font-family: var(--font-display);
+  font-size: 4.5rem;
+  line-height: 0.85;
+  float: left;
+  padding-right: 0.5rem;
+  padding-top: 0.25rem;
+  font-weight: 400;
+  color: var(--ink);
+}
+
+/* Shimmer loading state */
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--paper-warm) 0%,
+    var(--rule) 50%,
+    var(--paper-warm) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s linear infinite;
+}
+
+/* Selection */
+::selection {
+  background: var(--ochre-faint);
+  color: var(--ink);
+}
+
+/* Scrollbar -- subtle */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--rule);
+  border-radius: 0;
+  border: 2px solid var(--paper);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--ink-faint);
+}
+
+/* Focus states */
+:focus-visible {
+  outline: 2px solid var(--ochre);
+  outline-offset: 2px;
+}
+
+/* AI streaming caret */
+.ai-caret::after {
+  content: "▊";
+  color: var(--ember);
+  animation: caret-blink 1s ease-in-out infinite;
+  margin-left: 2px;
+}
+
+/* Editorial number display */
+.display-number {
+  font-family: var(--font-display);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.03em;
+  font-weight: 400;
+}
+
+/* Tabular data */
+.data-grid {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum", "zero";
 }
