@@ -73,7 +73,7 @@ export const connectors: Connector[] = [
     sampleTenant: "https://my379284.s4hana.cloud.sap",
     credentialFields: [
       { key: "host", label: "Tenant URL", placeholder: "https://myXXXXXX.s4hana.cloud.sap", sample: "https://my379284.s4hana.cloud.sap", required: true },
-      { key: "client_id", label: "Client ID", placeholder: "sb-client-...", sample: "sb-client-northfield-prod", required: true },
+      { key: "client_id", label: "Client ID", placeholder: "sb-client-...", sample: "sb-client-brentford-prod", required: true },
       { key: "client_secret", label: "Client Secret", placeholder: "••••••••", sample: "pKx8-hLqN-dxJ7-vz4M", secret: true, required: true },
       { key: "env", label: "Environment", placeholder: "prod", sample: "prod" },
     ],
@@ -95,10 +95,10 @@ export const connectors: Connector[] = [
     records: 12_804,
     logo: "ORC",
     endpointHint: "REST · /fscmRestApi/resources/11.13.18.05",
-    sampleTenant: "https://northfield-dev1.fa.em3.oraclecloud.com",
+    sampleTenant: "https://brentford-dev1.fa.em3.oraclecloud.com",
     credentialFields: [
-      { key: "host", label: "Fusion host", placeholder: "https://...fa.em3.oraclecloud.com", sample: "https://northfield-dev1.fa.em3.oraclecloud.com", required: true },
-      { key: "user", label: "Integration user", placeholder: "esg.integration", sample: "esg.integration@northfield.fc", required: true },
+      { key: "host", label: "Fusion host", placeholder: "https://...fa.em3.oraclecloud.com", sample: "https://brentford-dev1.fa.em3.oraclecloud.com", required: true },
+      { key: "user", label: "Integration user", placeholder: "esg.integration", sample: "esg.integration@brentford.fc", required: true },
       { key: "password", label: "Password", placeholder: "••••••••", sample: "OracleDemo#2025", secret: true, required: true },
     ],
     scopeEntities: [
@@ -117,11 +117,11 @@ export const connectors: Connector[] = [
     lastSync: "1h ago",
     records: 420,
     logo: "WDY",
-    endpointHint: "REST · /ccx/api/v1/tenants/northfield/workers",
-    sampleTenant: "https://wd5-impl.workday.com/northfield",
+    endpointHint: "REST · /ccx/api/v1/tenants/brentford/workers",
+    sampleTenant: "https://wd5-impl.workday.com/brentford",
     credentialFields: [
-      { key: "tenant", label: "Tenant", placeholder: "wd5-impl.workday.com/northfield", sample: "wd5-impl.workday.com/northfield", required: true },
-      { key: "isu", label: "ISU username", placeholder: "isu_esg", sample: "isu_esg@northfield", required: true },
+      { key: "tenant", label: "Tenant", placeholder: "wd5-impl.workday.com/brentford", sample: "wd5-impl.workday.com/brentford", required: true },
+      { key: "isu", label: "ISU username", placeholder: "isu_esg", sample: "isu_esg@brentford", required: true },
       { key: "isu_pw", label: "ISU password", placeholder: "••••••••", sample: "Wd-Demo-2025!", secret: true, required: true },
     ],
     scopeEntities: [
@@ -141,12 +141,12 @@ export const connectors: Connector[] = [
     records: 0,
     logo: "D365",
     endpointHint: "Dataverse · /api/data/v9.2",
-    sampleTenant: "https://northfield.crm4.dynamics.com",
+    sampleTenant: "https://brentford.crm4.dynamics.com",
     credentialFields: [
       { key: "tenant", label: "Tenant ID (Entra)", placeholder: "00000000-0000-0000-0000-000000000000", sample: "7e4a2c31-9d12-4bd3-b2c0-0af61d4a9f21", required: true },
       { key: "app_id", label: "App (client) ID", placeholder: "00000000-0000-0000-0000-000000000000", sample: "3e0d4a7f-82b5-4c90-a6e2-14f8c6d9013a", required: true },
       { key: "app_secret", label: "Client secret", placeholder: "••••••••", sample: "D65_~dEmO_S3cret_Value", secret: true, required: true },
-      { key: "env", label: "Environment URL", placeholder: "https://XXX.crm4.dynamics.com", sample: "https://northfield.crm4.dynamics.com", required: true },
+      { key: "env", label: "Environment URL", placeholder: "https://XXX.crm4.dynamics.com", sample: "https://brentford.crm4.dynamics.com", required: true },
     ],
     scopeEntities: [
       { key: "invoices", label: "Vendor invoices", description: "Finance & Operations module", relevance: "Scope 3.1", defaultOn: true },
@@ -164,9 +164,9 @@ export const connectors: Connector[] = [
     records: 892_440,
     logo: "BMS",
     endpointHint: "EcoStruxure Building · BACnet/IP · OPC UA bridge",
-    sampleTenant: "bms-gw-riverside.northfield.local",
+    sampleTenant: "bms-gw-riverside.brentford.local",
     credentialFields: [
-      { key: "gw", label: "Gateway endpoint", placeholder: "bms-gw.northfield.local", sample: "bms-gw-riverside.northfield.local", required: true },
+      { key: "gw", label: "Gateway endpoint", placeholder: "bms-gw.brentford.local", sample: "bms-gw-riverside.brentford.local", required: true },
       { key: "site_id", label: "Site ID", placeholder: "RVS-01", sample: "RVS-01", required: true },
       { key: "api_key", label: "API key", placeholder: "••••••••", sample: "sx_live_nf-RVS-a4b21c9f", secret: true, required: true },
       { key: "poll", label: "Poll interval (s)", placeholder: "30", sample: "30" },
@@ -211,10 +211,10 @@ export const connectors: Connector[] = [
     records: 148,
     logo: "AI",
     endpointHint: "Document AI · 23 supplier templates",
-    sampleTenant: "bills-northfieldfc@inbox.atmosphereum.ai",
+    sampleTenant: "bills-brentfordfc@inbox.atmosphereum.ai",
     credentialFields: [
       { key: "source", label: "Ingest method", placeholder: "email / sharepoint / drive", sample: "email", required: true, help: "Forward bills to the generated address" },
-      { key: "email", label: "Forward address", placeholder: "auto-generated", sample: "bills-northfieldfc@inbox.atmosphereum.ai" },
+      { key: "email", label: "Forward address", placeholder: "auto-generated", sample: "bills-brentfordfc@inbox.atmosphereum.ai" },
     ],
     scopeEntities: [
       { key: "electricity", label: "Electricity bills", description: "kWh, £, rate, MPAN extraction", relevance: "Scope 2", defaultOn: true },
@@ -233,10 +233,10 @@ export const connectors: Connector[] = [
     records: 62,
     logo: "AI",
     endpointHint: "Document AI · 12 carrier templates",
-    sampleTenant: "freight-northfieldfc@inbox.atmosphereum.ai",
+    sampleTenant: "freight-brentfordfc@inbox.atmosphereum.ai",
     credentialFields: [
       { key: "source", label: "Ingest method", placeholder: "email / sftp", sample: "email", required: true },
-      { key: "email", label: "Forward address", placeholder: "auto-generated", sample: "freight-northfieldfc@inbox.atmosphereum.ai" },
+      { key: "email", label: "Forward address", placeholder: "auto-generated", sample: "freight-brentfordfc@inbox.atmosphereum.ai" },
     ],
     scopeEntities: [
       { key: "road", label: "Road freight", description: "Tonne-km via LTL/FTL invoices", relevance: "Scope 3.4", defaultOn: true },
@@ -624,7 +624,7 @@ const mpanDetail: ConnectorDetail = {
     {
       mpan: "01-801-100-420-2104-12",
       kind: "electricity",
-      facility: "Riverside Stadium — main incomer",
+      facility: "Gtech Community Stadium — main incomer",
       tariff: "TOU — Day/Night/Peak",
       lastReading: 421.8,
       lastReadingAt: minutesAgo(1),
@@ -633,7 +633,7 @@ const mpanDetail: ConnectorDetail = {
     {
       mpan: "01-801-100-420-2104-13",
       kind: "electricity",
-      facility: "Riverside Stadium — hospitality",
+      facility: "Gtech Community Stadium — hospitality",
       tariff: "TOU — Day/Night/Peak",
       lastReading: 188.4,
       lastReadingAt: minutesAgo(1),
@@ -642,7 +642,7 @@ const mpanDetail: ConnectorDetail = {
     {
       mpan: "02-801-100-420-2104-08",
       kind: "gas",
-      facility: "Riverside Stadium — gas MPRN",
+      facility: "Gtech Community Stadium — gas MPRN",
       tariff: "Non-daily read (NDM)",
       lastReading: 644.1,
       lastReadingAt: minutesAgo(1),
@@ -758,7 +758,7 @@ const freightDetail: ConnectorDetail = {
       fields: [
         { key: "carrier", label: "Carrier", value: "DHL Supply Chain", conf: 0.99 },
         { key: "origin", label: "Origin", value: "Manchester, UK", conf: 0.95 },
-        { key: "dest", label: "Destination", value: "Riverside Stadium, London", conf: 0.98 },
+        { key: "dest", label: "Destination", value: "Gtech Community Stadium, London", conf: 0.98 },
         { key: "weight", label: "Weight (kg)", value: "2,420", conf: 0.96 },
         { key: "distance", label: "Distance (km)", value: "322", conf: 0.88 },
         { key: "mode", label: "Mode", value: "Road — FTL", conf: 0.94 },

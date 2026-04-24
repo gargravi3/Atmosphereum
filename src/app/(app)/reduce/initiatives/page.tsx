@@ -1,10 +1,19 @@
-"use client";
-import { opportunities } from "@/lib/fixtures";
+import { loadOpportunities } from "@/lib/db";
 import { SectionHeader } from "@/components/ui/section-header";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { fmt, cn } from "@/lib/utils";
-import { Calendar, User, TrendingUp } from "lucide-react";
+import { Calendar, User } from "lucide-react";
+import type { OpportunityRow } from "@/lib/db";
+
+export const dynamic = "force-dynamic";
+
+function fmtDate(d: unknown): string {
+  if (!d) return "";
+  if (d instanceof Date) return d.toISOString().slice(0, 10);
+  if (typeof d === "string") return d.slice(0, 10);
+  return String(d);
+}
 
 const COLUMNS = [
   { id: "proposed", label: "Proposed", tone: "slate" as const },
@@ -13,7 +22,8 @@ const COLUMNS = [
   { id: "completed", label: "Completed", tone: "ember" as const },
 ];
 
-export default function InitiativesPage() {
+export default async function InitiativesPage() {
+  const opportunities = await loadOpportunities();
   const cols = COLUMNS.map((c) => ({
     ...c,
     items: opportunities.filter((o) => o.status === c.id),
@@ -34,17 +44,18 @@ export default function InitiativesPage() {
           const totalSave = col.items.reduce((a, o) => a + o.annual_savings_gbp, 0);
           return (
             <div key={col.id} className="bg-paper-soft border border-rule flex flex-col min-h-[600px]">
-              {/* Column header */}
               <div className="p-4 border-b border-rule">
                 <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center gap-2">
-                    <span className={cn(
-                      "w-1.5 h-1.5 rounded-full",
-                      col.tone === "moss" && "bg-moss",
-                      col.tone === "ochre" && "bg-ochre",
-                      col.tone === "slate" && "bg-slate",
-                      col.tone === "ember" && "bg-ember",
-                    )} />
+                    <span
+                      className={cn(
+                        "w-1.5 h-1.5 rounded-full",
+                        col.tone === "moss" && "bg-moss",
+                        col.tone === "ochre" && "bg-ochre",
+                        col.tone === "slate" && "bg-slate",
+                        col.tone === "ember" && "bg-ember"
+                      )}
+                    />
                     <span className="font-display text-base">{col.label}</span>
                   </div>
                   <span className="text-xs font-mono text-ink-muted tabular">{col.items.length}</span>
@@ -56,7 +67,6 @@ export default function InitiativesPage() {
                 </div>
               </div>
 
-              {/* Cards */}
               <div className="flex-1 p-2 space-y-2 overflow-y-auto">
                 {col.items.map((o) => (
                   <InitiativeCard key={o.id} opp={o} />
@@ -75,17 +85,15 @@ export default function InitiativesPage() {
   );
 }
 
-function InitiativeCard({ opp }: { opp: typeof opportunities[number] }) {
+function InitiativeCard({ opp }: { opp: OpportunityRow }) {
   const progress =
-    opp.actual_abatement && opp.abatement_tco2e
-      ? (opp.actual_abatement / opp.abatement_tco2e) * 100
-      : 0;
+    opp.actual_abatement && opp.abatement_tco2e ? (opp.actual_abatement / opp.abatement_tco2e) * 100 : 0;
 
   return (
-    <div className="bg-paper border border-rule p-3 hover:border-ink-muted transition-colors cursor-grab active:cursor-grabbing">
+    <div className="bg-paper border border-rule p-3 hover:border-ink-muted transition-colors">
       <div className="flex items-center gap-1 mb-2">
         <Badge variant="outline">Scope {opp.scope}</Badge>
-        <span className="text-[10px] font-mono text-ink-muted ml-auto">{opp.id}</span>
+        <span className="text-[10px] font-mono text-ink-muted ml-auto">{opp.code ?? opp.id.slice(0, 8)}</span>
       </div>
       <h4 className="font-display text-sm leading-snug mb-3">{opp.title}</h4>
 
@@ -102,7 +110,7 @@ function InitiativeCard({ opp }: { opp: typeof opportunities[number] }) {
         </div>
       </div>
 
-      {opp.actual_abatement !== undefined && (
+      {opp.actual_abatement !== undefined && opp.actual_abatement !== null && (
         <div className="mb-3">
           <div className="flex items-baseline justify-between text-[9px] uppercase tracking-widest text-ink-muted mb-1">
             <span>Progress</span>
@@ -128,7 +136,7 @@ function InitiativeCard({ opp }: { opp: typeof opportunities[number] }) {
           {opp.target_date && (
             <div className="flex items-center gap-1.5">
               <Calendar className="w-2.5 h-2.5" />
-              <span>{opp.target_date}</span>
+              <span>{fmtDate(opp.target_date)}</span>
             </div>
           )}
         </div>

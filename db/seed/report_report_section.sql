@@ -1,0 +1,12 @@
+-- Synthetic data for Brentford FC | Generated 2026-04-22T11:17:07.946963
+-- Table: report.report_section
+
+INSERT INTO report.report_section (section_id, report_id, section_code, section_name, section_order, parent_section_id, content_type, ai_generated_content, human_edited_content, final_content, generation_status, confidence_score, reviewed_by, reviewed_at, review_comments, edit_distance_pct, created_at, updated_at) VALUES
+('5927c86e-3c68-5305-b64a-d8c9ef640fa4', '4e9b82b5-2655-5909-8729-36bb5feb4af3', 'SECR-A', 'Section A — General disclosures', 1, NULL, 'mixed', NULL, NULL, NULL, 'ai_complete', 94, NULL, NULL, NULL, NULL, '2026-04-15 10:00:00+00', '2026-04-15 10:00:00+00'),
+('f167f89e-1e01-52d5-ab37-fd6126a7484a', '4e9b82b5-2655-5909-8729-36bb5feb4af3', 'SECR-P1', 'Principle 1 — Ethics and transparency', 2, NULL, 'narrative', NULL, NULL, NULL, 'human_required', NULL, NULL, NULL, NULL, NULL, '2026-04-15 10:00:00+00', '2026-04-15 10:00:00+00'),
+('7a09f87e-c9a0-5dd8-9097-6e92a84254ba', '4e9b82b5-2655-5909-8729-36bb5feb4af3', 'SECR-P2', 'Principle 2 — Product lifecycle sustainability', 3, NULL, 'narrative', NULL, NULL, NULL, 'ai_complete', 87, NULL, NULL, NULL, NULL, '2026-04-15 10:00:00+00', '2026-04-15 10:00:00+00'),
+('9d205848-a937-594f-9637-fd48eb756275', '4e9b82b5-2655-5909-8729-36bb5feb4af3', 'SECR-P3', 'Principle 3 — Employee wellbeing', 4, NULL, 'narrative', NULL, NULL, NULL, 'human_required', NULL, NULL, NULL, NULL, NULL, '2026-04-15 10:00:00+00', '2026-04-15 10:00:00+00'),
+('6af2bfe9-e752-5332-985c-b7ff72402984', '4e9b82b5-2655-5909-8729-36bb5feb4af3', 'SECR-P4', 'Principle 4 — Stakeholder engagement', 5, NULL, 'narrative', NULL, NULL, NULL, 'ai_complete', 91, NULL, NULL, NULL, NULL, '2026-04-15 10:00:00+00', '2026-04-15 10:00:00+00'),
+('5fed9d29-8a55-54a4-9384-4fd58a65b751', '4e9b82b5-2655-5909-8729-36bb5feb4af3', 'SECR-P5', 'Principle 5 — Human rights', 6, NULL, 'narrative', NULL, NULL, NULL, 'not_started', NULL, NULL, NULL, NULL, NULL, '2026-04-15 10:00:00+00', '2026-04-15 10:00:00+00'),
+('dc450687-24c6-5e84-ba70-204285aaf1ae', '4e9b82b5-2655-5909-8729-36bb5feb4af3', 'SECR-P6', 'Principle 6 — Environmental protection', 7, NULL, 'narrative', NULL, NULL, NULL, 'ai_complete', 96, NULL, NULL, NULL, NULL, '2026-04-15 10:00:00+00', '2026-04-15 10:00:00+00'),
+('1b76cad5-ef61-5fc2-ae66-fb231aabd18c', '4e9b82b5-2655-5909-8729-36bb5feb4af3', 'SECR-E', 'Energy and carbon — SECR metrics', 8, NULL, 'mixed', NULL, NULL, NULL, 'approved', 98, NULL, NULL, NULL, NULL, '2026-04-15 10:00:00+00', '2026-04-15 10:00:00+00');

@@ -1,0 +1,10 @@
+-- Synthetic data for Brentford FC | Generated 2026-04-22T11:17:07.909796
+-- Table: core.user_account
+
+INSERT INTO core.user_account (user_id, tenant_id, keycloak_user_id, email, first_name, last_name, display_name, job_title, department, preferred_language, preferred_timezone, status, login_count, created_at, updated_at) VALUES
+('bd4d4b13-d20b-585b-9dd4-23d6766987e3', 'cd4ea9a2-9b2b-5b5c-8a1f-16812572de1d', 'kc-harry-001', 'harry.brown@brentfordfc.com', 'Harry', 'Brown', 'Harry Brown', 'Head of Operations', 'Operations', 'en', 'Europe/London', 'active', 47, '2026-04-15 10:00:00+00', '2026-04-15 10:00:00+00'),
+('ade9030d-5da7-56d8-bba3-171354aea404', 'cd4ea9a2-9b2b-5b5c-8a1f-16812572de1d', 'kc-sarah-002', 'sarah.chen@brentfordfc.com', 'Sarah', 'Chen', 'Sarah Chen', 'Sustainability Manager', 'Sustainability', 'en', 'Europe/London', 'active', 112, '2026-04-15 10:00:00+00', '2026-04-15 10:00:00+00'),
+('a7101a46-9569-5a34-bbed-8f5499c5ffb7', 'cd4ea9a2-9b2b-5b5c-8a1f-16812572de1d', 'kc-james-003', 'james.walker@brentfordfc.com', 'James', 'Walker', 'James Walker', 'Chief Financial Officer', 'Finance', 'en', 'Europe/London', 'active', 23, '2026-04-15 10:00:00+00', '2026-04-15 10:00:00+00'),
+('8bf3e46a-a878-5cd9-90fe-33ac5f795a4f', 'cd4ea9a2-9b2b-5b5c-8a1f-16812572de1d', 'kc-tom-004', 'tom.richards@brentfordfc.com', 'Tom', 'Richards', 'Tom Richards', 'Cost-Carbon Program Manager', 'Sustainability', 'en', 'Europe/London', 'active', 68, '2026-04-15 10:00:00+00', '2026-04-15 10:00:00+00'),
+('0dfadc20-d74d-5808-8f19-4ec8f410515a', 'cd4ea9a2-9b2b-5b5c-8a1f-16812572de1d', 'kc-priya-005', 'priya.sharma@brentfordfc.com', 'Priya', 'Sharma', 'Priya Sharma', 'Data Steward', 'IT', 'en', 'Europe/London', 'active', 89, '2026-04-15 10:00:00+00', '2026-04-15 10:00:00+00'),
+('a36de847-c152-5ea3-8f19-b0db0e5af98f', 'cd4ea9a2-9b2b-5b5c-8a1f-16812572de1d', 'kc-auditor-006', 'auditor@ey.com', 'External', 'Auditor', 'EY Assurance', 'External Auditor', 'Assurance', 'en', 'Europe/London', 'active', 5, '2026-04-15 10:00:00+00', '2026-04-15 10:00:00+00');

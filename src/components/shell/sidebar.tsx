@@ -21,6 +21,9 @@ import {
   Archive,
   ClipboardCheck,
   History,
+  Users,
+  Target,
+  Scale,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -49,6 +52,7 @@ const NAV: Section[] = [
       { href: "/record/sources", label: "Data Sources", icon: Database },
       { href: "/record/emissions", label: "Emission Records", icon: Table },
       { href: "/record/factors", label: "Emission Factors", icon: BookOpen },
+      { href: "/record/suppliers", label: "Suppliers", icon: Users },
       { href: "/record/quality", label: "Data Quality", icon: Gauge },
     ],
   },
@@ -60,6 +64,7 @@ const NAV: Section[] = [
       { href: "/reduce/opportunities", label: "Opportunity Portfolio", icon: Lightbulb },
       { href: "/reduce/mac-curve", label: "MAC Curve", icon: BarChart3 },
       { href: "/reduce/initiatives", label: "Initiative Tracker", icon: KanbanSquare },
+      { href: "/reduce/targets", label: "Net Zero Targets", icon: Target },
       { href: "/reduce/ideate", label: "AI Ideation", icon: MessageSquare },
     ],
   },
@@ -77,6 +82,7 @@ const NAV: Section[] = [
     label: "Govern",
     items: [
       { href: "/govern/approvals", label: "Approvals", icon: ClipboardCheck },
+      { href: "/govern/materiality", label: "Materiality", icon: Scale },
       { href: "/govern/audit", label: "Audit Trail", icon: History },
     ],
   },
@@ -111,7 +117,7 @@ export function Sidebar() {
         </div>
         <div className="flex items-center justify-between">
           <div>
-            <div className="text-sm font-medium">Northfield FC</div>
+            <div className="text-sm font-medium">Brentford FC</div>
             <div className="text-xs text-ink-muted font-mono">FY25 · GBP</div>
           </div>
           <div className="w-2 h-2 rounded-full bg-moss animate-pulse" />

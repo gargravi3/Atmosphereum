@@ -1,0 +1,9 @@
+-- Synthetic data for Brentford FC | Generated 2026-04-22T11:17:07.908414
+-- Table: core.notification
+
+INSERT INTO core.notification (notification_id, tenant_id, user_id, notification_type, title, body, link_module, link_entity_type, link_entity_id, is_read, read_at, created_at) VALUES
+('4296a2d9-2e54-5722-8b39-cba44d61da72', 'cd4ea9a2-9b2b-5b5c-8a1f-16812572de1d', 'ade9030d-5da7-56d8-bba3-171354aea404', 'deadline_reminder', 'SECR Filing Deadline Approaching', 'UK SECR annual report due in 168 days (Sep 30, 2026). Current completion: 42%.', NULL, NULL, NULL, FALSE, NULL, '2026-04-15 10:00:00+00'),
+('507a7ef4-2ff9-5761-9d91-54c0c6df4c6c', 'cd4ea9a2-9b2b-5b5c-8a1f-16812572de1d', 'a7101a46-9569-5a34-bbed-8f5499c5ffb7', 'approval_request', 'LED Retrofit Initiative Requires Approval', 'Tom Richards has submitted the Stadium LED Retrofit initiative ($145K budget) for CFO approval.', NULL, NULL, NULL, FALSE, NULL, '2026-04-15 10:00:00+00'),
+('2088a911-80f4-50ee-bbe8-0d0bd155db9a', 'cd4ea9a2-9b2b-5b5c-8a1f-16812572de1d', 'ade9030d-5da7-56d8-bba3-171354aea404', 'anomaly_alert', 'Scope 1 Anomaly Detected — Gtech Stadium', 'Natural gas consumption at Gtech Community Stadium in Feb 2026 is 38% above seasonal norm.', NULL, NULL, NULL, FALSE, NULL, '2026-04-15 10:00:00+00'),
+('7cd9dbc8-8ef4-5d4a-88cf-2fbb7128e0fb', 'cd4ea9a2-9b2b-5b5c-8a1f-16812572de1d', 'bd4d4b13-d20b-585b-9dd4-23d6766987e3', 'system', 'DEFRA 2025 Emission Factors Available', 'New DEFRA emission factors for UK reporting year 2025 are now available. Review and approve update.', NULL, NULL, NULL, FALSE, NULL, '2026-04-15 10:00:00+00'),
+('c2e6b966-5695-55fe-8484-f29d6db09b67', 'cd4ea9a2-9b2b-5b5c-8a1f-16812572de1d', '0dfadc20-d74d-5808-8f19-4ec8f410515a', 'approval_request', 'Scope 2 Data Awaiting Review', 'Scope 2 emission data for Jersey Road Training Ground (Jan 2026) submitted by Sarah Chen requires validation.', NULL, NULL, NULL, FALSE, NULL, '2026-04-15 10:00:00+00');

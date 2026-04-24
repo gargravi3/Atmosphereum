@@ -105,11 +105,11 @@ function DataSourcesContent() {
     setTimeout(() => {
       setExtracting(false);
       setExtracted({
-        supplier: "Meridian Energy Supply",
-        period: "Mar 2025",
-        kwh: 38_420,
-        cost: 13_063,
-        rate: 0.34,
+        supplier: "Scottish Power",
+        period: "Jan 2026",
+        kwh: 350_000,
+        cost: 91_000,
+        rate: 0.26,
       });
     }, 2400);
   };
@@ -316,7 +316,7 @@ function DataSourcesContent() {
               <div className="text-xs text-ink-muted font-mono">
                 {extracting
                   ? "Structured extraction in progress"
-                  : "Click to try a sample — Meridian Energy Mar 2025.pdf"}
+                  : "Click to try a sample — scottish_power_jan2026.pdf"}
               </div>
               {extracting && (
                 <div className="mt-4 h-0.5 bg-paper-warm overflow-hidden relative max-w-xs mx-auto">

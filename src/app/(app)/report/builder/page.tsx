@@ -10,7 +10,7 @@ import {
   Eye,
   Play,
 } from "lucide-react";
-import { frameworks, totalsByScope, totalCostMetrics, opportunities, org } from "@/lib/fixtures";
+import { frameworks } from "@/lib/fixtures";
 import { SectionHeader } from "@/components/ui/section-header";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -28,8 +28,8 @@ const BRSR_SECTIONS = [
       { label: "Renewable share", value: "12.8%", verified: false },
     ],
     narrativeChunks: [
-      "During FY25, Northfield FC consumed 8.3 GWh of energy across its three operational facilities. ",
-      "Electricity accounted for 77% of total energy by delivered amount, with the Riverside Stadium dominating usage at 72% of site-level demand — driven predominantly by matchday floodlighting, hospitality HVAC, and refrigeration. ",
+      "During FY25, Brentford FC consumed 8.3 GWh of energy across its operational facilities. ",
+      "Electricity accounted for 77% of total energy by delivered amount, with the Gtech Community Stadium dominating usage at 72% of site-level demand — driven predominantly by matchday floodlighting, hospitality HVAC, and refrigeration. ",
       "Natural gas contributed 23% and remains concentrated in stadium space heating. Fleet fuels made up a small but material 4% tail, mostly diesel for pitch equipment. ",
       "Renewable-sourced electricity covered 12.8% of supply under our current tariff; a corporate PPA signed in March 2025 is projected to raise this to 100% of Scope 2 from August 2025 forward.",
     ],
@@ -173,9 +173,9 @@ export default function ReportBuilderPage() {
         </div>
         <div className="ml-4 text-xs text-ink-soft italic">{fw.description}</div>
         <div className="ml-auto flex items-center gap-4 text-xs text-ink-muted font-mono">
-          <span>{org.name}</span>
+          <span>Brentford FC</span>
           <span>·</span>
-          <span>{org.fiscal_year}</span>
+          <span>FY25</span>
           <span>·</span>
           <span>v1.3 draft</span>
         </div>

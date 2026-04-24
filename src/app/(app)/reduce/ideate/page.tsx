@@ -30,7 +30,7 @@ const CANNED_RESPONSE: Message[] = [
   {
     role: "assistant",
     content:
-      "Looking at Northfield FC's fleet profile — 14 ops vans + 6 directors' cars, ~92 tCO₂e annually and £138k fuel spend. I pulled analogue reductions from three Sustainpedia case studies and two peer clubs. Here are four ranked opportunities:",
+      "Looking at Brentford FC's fleet profile — 14 ops vans + 6 directors' cars, ~92 tCO₂e annually and £138k fuel spend. I pulled analogue reductions from three Sustainpedia case studies and two peer clubs. Here are four ranked opportunities:",
   },
   {
     role: "suggestions",
@@ -43,7 +43,7 @@ const CANNED_RESPONSE: Message[] = [
         abate: 38,
         save: 24_000,
         confidence: "high",
-        sources: ["Brentford FC 2024 fleet transition", "DEFRA 2023 EV factors", "Energy Saving Trust 2024"],
+        sources: ["West Ham FC 2024 fleet transition", "DEFRA 2023 EV factors", "Energy Saving Trust 2024"],
       },
       {
         title: "Director car policy — plug-in hybrid minimum",

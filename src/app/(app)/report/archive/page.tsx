@@ -1,11 +1,20 @@
-import { reports } from "@/lib/fixtures";
+import { loadReports } from "@/lib/db";
 import { SectionHeader } from "@/components/ui/section-header";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Download, FileText } from "lucide-react";
-import { fmt, cn } from "@/lib/utils";
 
-export default function ArchivePage() {
+export const dynamic = "force-dynamic";
+
+function fmtDate(d: unknown): string {
+  if (!d) return "—";
+  if (d instanceof Date) return d.toISOString().slice(0, 10);
+  if (typeof d === "string") return d.slice(0, 10);
+  return String(d);
+}
+
+export default async function ArchivePage() {
+  const reports = await loadReports();
   return (
     <div className="px-8 py-10 space-y-8">
       <SectionHeader
@@ -23,7 +32,7 @@ export default function ArchivePage() {
               <th className="px-4 py-3 text-[10px] uppercase tracking-widest text-ink-muted">Framework</th>
               <th className="px-4 py-3 text-[10px] uppercase tracking-widest text-ink-muted">Period</th>
               <th className="px-4 py-3 text-[10px] uppercase tracking-widest text-ink-muted">Status</th>
-              <th className="px-4 py-3 text-[10px] uppercase tracking-widest text-ink-muted">Version</th>
+              <th className="px-4 py-3 text-[10px] uppercase tracking-widest text-ink-muted">Completion</th>
               <th className="px-4 py-3 text-[10px] uppercase tracking-widest text-ink-muted">Created</th>
               <th className="px-4 py-3 text-[10px] uppercase tracking-widest text-ink-muted">Author</th>
               <th className="px-5 py-3"></th>
@@ -39,7 +48,7 @@ export default function ArchivePage() {
                   </div>
                 </td>
                 <td className="px-4 py-4">
-                  <Badge variant="default">{r.framework}</Badge>
+                  <Badge variant="default">{r.framework_code}</Badge>
                 </td>
                 <td className="px-4 py-4 font-mono tabular text-ink-soft">{r.period}</td>
                 <td className="px-4 py-4">
@@ -55,8 +64,8 @@ export default function ArchivePage() {
                     {r.status.replace("_", " ")}
                   </Badge>
                 </td>
-                <td className="px-4 py-4 font-mono tabular">v{r.version}</td>
-                <td className="px-4 py-4 font-mono text-ink-soft">{r.created_at}</td>
+                <td className="px-4 py-4 font-mono tabular">{r.completion_pct}%</td>
+                <td className="px-4 py-4 font-mono text-ink-soft">{fmtDate(r.created_at)}</td>
                 <td className="px-4 py-4 text-ink-soft">{r.created_by}</td>
                 <td className="px-5 py-4 text-right">
                   <Button variant="ghost" size="sm">
@@ -68,6 +77,12 @@ export default function ArchivePage() {
           </tbody>
         </table>
       </div>
+
+      {reports.length === 0 && (
+        <div className="border border-rule bg-paper-soft p-8 text-center text-ink-muted text-sm">
+          No reports generated yet.
+        </div>
+      )}
     </div>
   );
 }

@@ -1,0 +1,5 @@
+-- Synthetic data for Brentford FC | Generated 2026-04-22T11:17:07.910349
+-- Table: dq.quality_exception
+
+INSERT INTO dq.quality_exception (exception_id, tenant_id, run_id, rule_id, source_table, source_record_id, source_field, severity, expected_value, actual_value, error_message, ai_explanation, suggested_action, status, assigned_to, created_at, updated_at) VALUES
+('73012720-3282-54e2-9f34-8a40bde289df', 'cd4ea9a2-9b2b-5b5c-8a1f-16812572de1d', '74bcad6e-e557-5238-a472-0feebcf1bb96', '4a075a99-3ff6-5274-aa61-ba944a24cded', 'record.scope2_emission', '6130221a-5ec2-5864-903e-318114b6e8ce', 'energy_quantity', 'warning', '280000 (3-month avg)', '350000', 'Electricity consumption at Gtech Stadium 25% above 3-month rolling average', 'This increase is likely due to January being a high-matchday month (4 home fixtures vs typical 2). Stadium floodlights and hospitality heating contribute significant demand during match events. Recommend validating against fixture calendar.', 'Validate against Jan 2026 fixture calendar. If 4 home matches confirmed, mark as accepted.', 'open', '0dfadc20-d74d-5808-8f19-4ec8f410515a', '2026-04-15 10:00:00+00', '2026-04-15 10:00:00+00');

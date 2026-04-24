@@ -1,7 +1,6 @@
 /**
- * Synthetic dataset for Northfield FC — a fictional Premier League-adjacent
- * sports organization. Numbers are realistic, modeled on Brentford FC-style
- * operations with DEFRA 2023 emission factors.
+ * Synthetic dataset for Brentford FC — Premier League sports organization.
+ * Numbers are realistic with DEFRA 2023 emission factors.
  *
  * Deterministically generated — same input seed produces the same dataset.
  */
@@ -24,9 +23,9 @@ import type {
 // -----------------------------------------------------------------------
 
 export const org = {
-  id: "northfield-fc",
-  name: "Northfield FC",
-  legal_name: "Northfield Football Club Ltd.",
+  id: "brentford-fc",
+  name: "Brentford FC",
+  legal_name: "Brentford Football Club Ltd.",
   sector: "Sports & Entertainment",
   revenue_gbp: 168_000_000,
   employees: 420,
@@ -43,22 +42,22 @@ export const org = {
 export const facilities: Facility[] = [
   {
     id: "fac-stadium",
-    name: "Riverside Stadium",
+    name: "Gtech Community Stadium",
     type: "stadium",
     geography: "UK-LON",
     area_sqm: 48_500,
-    capacity: 28_400,
+    capacity: 17_250,
   },
   {
     id: "fac-training",
-    name: "Jealott's Hill Training Ground",
+    name: "Jersey Road Training Ground",
     type: "training_ground",
-    geography: "UK-BER",
+    geography: "UK-LON",
     area_sqm: 12_200,
   },
   {
     id: "fac-hq",
-    name: "Northfield House (HQ)",
+    name: "Brentford FC HQ",
     type: "office",
     geography: "UK-LON",
     area_sqm: 3_400,

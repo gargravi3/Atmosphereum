@@ -1,11 +1,18 @@
-import { emissions, facilities, CATEGORY_LABELS } from "@/lib/fixtures";
+import { loadEmissions, loadFacilities, loadQualityExceptions, CATEGORY_LABELS } from "@/lib/db";
 import { SectionHeader } from "@/components/ui/section-header";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { fmt } from "@/lib/utils";
 import { AlertTriangle, CheckCircle2, Clock } from "lucide-react";
 
-export default function DataQualityPage() {
+export const dynamic = "force-dynamic";
+
+export default async function DataQualityPage() {
+  const [emissions, facilities, exceptions] = await Promise.all([
+    loadEmissions(),
+    loadFacilities(),
+    loadQualityExceptions(),
+  ]);
   // Build heatmap: facility x category with avg DQ
   const categoriesInUse = Array.from(new Set(emissions.map((e) => e.category)));
   const cells = facilities.map((fac) => {
@@ -60,9 +67,9 @@ export default function DataQualityPage() {
           <div className="text-xs text-ink-muted font-mono mt-1">DQ 4-5</div>
         </div>
         <div className="px-6">
-          <div className="text-micro uppercase tracking-widest text-ink-muted mb-2">Gaps</div>
-          <div className="display-number text-4xl text-ember">12</div>
-          <div className="text-xs text-ink-muted font-mono mt-1">categories missing</div>
+          <div className="text-micro uppercase tracking-widest text-ink-muted mb-2">Open gaps</div>
+          <div className="display-number text-4xl text-ember">{exceptions.filter((e) => e.status !== "resolved" && e.status !== "dismissed").length}</div>
+          <div className="text-xs text-ink-muted font-mono mt-1">exceptions open</div>
         </div>
       </div>
 
@@ -131,37 +138,50 @@ export default function DataQualityPage() {
       {/* Gaps list */}
       <section>
         <h2 className="font-display text-2xl tracking-tight mb-6">
-          Open gaps
+          Open exceptions
         </h2>
-        <div className="border border-rule bg-paper-soft divide-y divide-rule">
-          {[
-            { type: "Missing", title: "Refrigerant log — Riverside Stadium", detail: "Last entry Feb 2025; 4 units require service data", severity: "high" },
-            { type: "Stale factor", title: "Textiles spend-based factor (USEEIO)", detail: "v1.2 in use; v2.0 available since Mar 2024", severity: "medium" },
-            { type: "Unverified", title: "44 fan-travel survey responses", detail: "Matchday 12-Apr: below confidence threshold 60%", severity: "medium" },
-            { type: "Missing", title: "Upstream transport — kit shipments", detail: "Q3 FY25 freight records not in ledger", severity: "medium" },
-            { type: "Mismatch", title: "Electricity kWh vs supplier bill", detail: "38,420 kWh on bill vs 38,102 kWh in ledger — 0.8% gap", severity: "low" },
-          ].map((g, i) => (
-            <div key={i} className="px-5 py-4 flex items-start gap-4 hover:bg-paper-warm transition-colors">
-              <div className={`shrink-0 w-8 h-8 flex items-center justify-center ${
-                g.severity === "high" ? "bg-ember-faint text-ember" :
-                g.severity === "medium" ? "bg-ochre-faint text-ochre" :
-                "bg-slate-faint text-slate"
-              }`}>
-                {g.severity === "high" ? <AlertTriangle className="w-4 h-4" /> : g.severity === "medium" ? <Clock className="w-4 h-4" /> : <CheckCircle2 className="w-4 h-4" />}
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2 mb-1">
-                  <Badge variant={g.severity === "high" ? "ember" : g.severity === "medium" ? "ochre" : "slate"}>
-                    {g.type}
-                  </Badge>
+        {exceptions.length === 0 ? (
+          <div className="border border-rule bg-paper-soft p-8 text-center text-ink-muted text-sm">
+            No exceptions raised.
+          </div>
+        ) : (
+          <div className="border border-rule bg-paper-soft divide-y divide-rule">
+            {exceptions.map((g) => {
+              const severity = g.severity === "critical" ? "high" : g.severity === "warning" ? "medium" : "low";
+              return (
+                <div key={g.id} className="px-5 py-4 flex items-start gap-4 hover:bg-paper-warm transition-colors">
+                  <div
+                    className={`shrink-0 w-8 h-8 flex items-center justify-center ${
+                      severity === "high"
+                        ? "bg-ember-faint text-ember"
+                        : severity === "medium"
+                        ? "bg-ochre-faint text-ochre"
+                        : "bg-slate-faint text-slate"
+                    }`}
+                  >
+                    {severity === "high" ? <AlertTriangle className="w-4 h-4" /> : severity === "medium" ? <Clock className="w-4 h-4" /> : <CheckCircle2 className="w-4 h-4" />}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 mb-1">
+                      <Badge variant={severity === "high" ? "ember" : severity === "medium" ? "ochre" : "slate"}>
+                        {g.rule_name ?? g.rule_code ?? "Rule"}
+                      </Badge>
+                      <Badge variant="outline">{g.status}</Badge>
+                    </div>
+                    <div className="font-medium text-sm">{g.message}</div>
+                    {g.ai_explanation && (
+                      <div className="text-xs text-ink-muted mt-1 leading-relaxed">{g.ai_explanation}</div>
+                    )}
+                    {g.suggested_action && (
+                      <div className="text-xs text-ember mt-1">Suggested: {g.suggested_action}</div>
+                    )}
+                  </div>
+                  <Button variant="outline" size="sm">Resolve</Button>
                 </div>
-                <div className="font-medium text-sm">{g.title}</div>
-                <div className="text-xs text-ink-muted mt-0.5">{g.detail}</div>
-              </div>
-              <Button variant="outline" size="sm">Resolve</Button>
-            </div>
-          ))}
-        </div>
+              );
+            })}
+          </div>
+        )}
       </section>
     </div>
   );

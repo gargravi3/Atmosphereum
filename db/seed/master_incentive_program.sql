@@ -1,0 +1,7 @@
+-- Synthetic data for Brentford FC | Generated 2026-04-22T11:17:07.912264
+-- Table: master.incentive_program
+
+INSERT INTO master.incentive_program (incentive_id, program_name, program_code, jurisdiction, agency, incentive_type, applicable_sectors, applicable_activities, max_amount_usd, percentage_coverage, program_start_date, program_end_date, url, description, is_active, created_at) VALUES
+('7a11e146-27e9-525a-99cc-0f7d74f0efc6', 'UK Enhanced Capital Allowances - Energy Saving', 'UK-ECA', 'United Kingdom', 'HMRC', 'tax_credit', ARRAY['all'], ARRAY['energy_efficiency','building_management'], 500000, 100, '2024-04-01', '2027-03-31', 'https://www.gov.uk/guidance/energy-technology-list', 'Tax relief on qualifying energy-saving plant and machinery', TRUE, '2026-04-15 10:00:00+00'),
+('38e558a1-b56e-5f1c-9c2c-a9f8949736da', 'Sport England Sustainability Fund', 'SE-SUSTAIN', 'United Kingdom', 'Sport England', 'grant', ARRAY['sports'], ARRAY['energy_efficiency','renewable_energy'], 250000, 50, '2025-01-01', '2027-12-31', NULL, 'Grants for sports facilities to improve energy efficiency', TRUE, '2026-04-15 10:00:00+00'),
+('46b5860c-d8a5-5e15-b7fe-8333cff27fe5', 'UK Smart Export Guarantee', 'UK-SEG', 'United Kingdom', 'Ofgem', 'feed_in_tariff', ARRAY['all'], ARRAY['renewable_energy'], NULL, NULL, '2020-01-01', NULL, NULL, 'Payment for excess renewable electricity exported to the grid', TRUE, '2026-04-15 10:00:00+00');

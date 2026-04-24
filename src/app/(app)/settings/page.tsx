@@ -1,10 +1,14 @@
 import { SectionHeader } from "@/components/ui/section-header";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { org } from "@/lib/fixtures";
+import { loadOrg, loadFacilities } from "@/lib/db";
 import { fmt } from "@/lib/utils";
 
-export default function SettingsPage() {
+export const dynamic = "force-dynamic";
+
+export default async function SettingsPage() {
+  const [org, facilities] = await Promise.all([loadOrg(), loadFacilities()]);
+
   return (
     <div className="px-8 py-10 space-y-10 max-w-4xl">
       <SectionHeader
@@ -15,27 +19,46 @@ export default function SettingsPage() {
       <section>
         <h2 className="font-display text-xl tracking-tight mb-4">Organisation</h2>
         <dl className="border border-rule bg-paper-soft divide-y divide-rule">
-          <Row label="Legal name" value={org.legal_name} />
+          <Row label="Legal name" value={org.legal_name ?? org.name} />
+          <Row label="Trading name" value={org.name} />
           <Row label="Sector" value={org.sector} />
           <Row label="Employees" value={fmt.int(org.employees)} />
           <Row label="FY revenue" value={fmt.gbp(org.revenue_gbp)} />
           <Row label="Fiscal year" value={`${org.fy_start} → ${org.fy_end}`} />
           <Row label="Reporting boundary" value="Operational control" />
+          <Row label="Reporting currency" value={org.currency} />
         </dl>
+      </section>
+
+      <section>
+        <h2 className="font-display text-xl tracking-tight mb-4">
+          Facilities <span className="text-ink-muted font-mono text-xs ml-2">({facilities.length})</span>
+        </h2>
+        <div className="border border-rule bg-paper-soft divide-y divide-rule">
+          {facilities.map((f) => (
+            <div key={f.id} className="grid grid-cols-[240px_1fr_auto] gap-4 px-5 py-3.5 text-sm items-center">
+              <div className="font-medium">{f.name}</div>
+              <div className="text-ink-muted">
+                {f.city}, {f.country} · {f.type.replace(/_/g, " ")}
+              </div>
+              <div className="font-mono text-xs text-ink-muted">
+                {fmt.int(f.area_sqm)} m²
+              </div>
+            </div>
+          ))}
+        </div>
       </section>
 
       <section>
         <h2 className="font-display text-xl tracking-tight mb-4">Period & currency</h2>
         <div className="border border-rule bg-paper-soft p-5 flex items-center gap-4">
           <select className="h-9 px-3 text-sm bg-paper border border-rule">
-            <option>FY25 (current)</option>
-            <option>FY24</option>
-            <option>FY23</option>
+            <option>{org.fiscal_year} (current)</option>
           </select>
-          <select className="h-9 px-3 text-sm bg-paper border border-rule">
-            <option>GBP (£)</option>
-            <option>EUR (€)</option>
-            <option>USD ($)</option>
+          <select className="h-9 px-3 text-sm bg-paper border border-rule" defaultValue={org.currency}>
+            <option value="GBP">GBP (£)</option>
+            <option value="EUR">EUR (€)</option>
+            <option value="USD">USD ($)</option>
           </select>
           <Badge variant="moss">Auto-convert legacy records</Badge>
         </div>

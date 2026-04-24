@@ -1,0 +1,8 @@
+-- Synthetic data for Brentford FC | Generated 2026-04-22T11:17:07.908567
+-- Table: core.organization
+
+INSERT INTO core.organization (org_id, tenant_id, parent_org_id, org_code, org_name, org_type, legal_name, registration_number, industry_code, industry_name, country_code, state_code, city, reporting_currency, fiscal_year_start, is_listed, employee_count, annual_revenue_usd, status, created_at, updated_at) VALUES
+('ab3c068c-b053-50e1-8ed6-69c590c57274', 'cd4ea9a2-9b2b-5b5c-8a1f-16812572de1d', NULL, 'BFC-GROUP', 'Brentford Football Club', 'group', 'Brentford FC Ltd', '00952312', '9311', 'Sports Clubs & Activities', 'GB', 'ENG', 'London', 'GBP', 7, FALSE, 450, 200000000, 'active', '2026-04-15 10:00:00+00', '2026-04-15 10:00:00+00'),
+('6494be87-9b3a-5a71-88b5-dac9657b6757', 'cd4ea9a2-9b2b-5b5c-8a1f-16812572de1d', 'ab3c068c-b053-50e1-8ed6-69c590c57274', 'BFC-STADIUM', 'Stadium Operations', 'business_unit', NULL, NULL, '9311', 'Sports Clubs & Activities', 'GB', 'ENG', 'London', 'GBP', 7, FALSE, 180, NULL, 'active', '2026-04-15 10:00:00+00', '2026-04-15 10:00:00+00'),
+('ffcd6ea5-8c96-5b27-a596-7e210b34a179', 'cd4ea9a2-9b2b-5b5c-8a1f-16812572de1d', 'ab3c068c-b053-50e1-8ed6-69c590c57274', 'BFC-FOOTBALL', 'Football Operations', 'business_unit', NULL, NULL, '9311', 'Sports Clubs & Activities', 'GB', 'ENG', 'London', 'GBP', 7, FALSE, 120, NULL, 'active', '2026-04-15 10:00:00+00', '2026-04-15 10:00:00+00'),
+('a1d1652c-25b5-5731-a83f-73e152c229f3', 'cd4ea9a2-9b2b-5b5c-8a1f-16812572de1d', 'ab3c068c-b053-50e1-8ed6-69c590c57274', 'BFC-COMMERCIAL', 'Commercial Operations', 'business_unit', NULL, NULL, '9311', 'Sports Clubs & Activities', 'GB', 'ENG', 'London', 'GBP', 7, FALSE, 150, NULL, 'active', '2026-04-15 10:00:00+00', '2026-04-15 10:00:00+00');

@@ -1,21 +1,23 @@
 import Link from "next/link";
-import { ArrowUpRight, TrendingDown, Zap, Flame, ShoppingBag, Trash2, Plane, Droplets } from "lucide-react";
+import { ArrowUpRight, Zap, Flame, ShoppingBag, Trash2, Plane, Droplets } from "lucide-react";
 import {
   totalsByScope,
   totalsByMonth,
   totalCostMetrics,
   byCategory,
   byFacility,
-  opportunities,
-  org,
+  loadOpportunities,
+  loadOrg,
   CATEGORY_LABELS,
-} from "@/lib/fixtures";
+} from "@/lib/db";
 import { Stat } from "@/components/ui/stat";
 import { Badge } from "@/components/ui/badge";
 import { ScopeTrend } from "@/components/charts/scope-trend";
 import { ScopeDonut } from "@/components/charts/scope-donut";
 import { CostWaterfall } from "@/components/charts/cost-waterfall";
 import { fmt } from "@/lib/utils";
+
+export const dynamic = "force-dynamic";
 
 const CATEGORY_ICONS: Record<string, React.ComponentType<{ className?: string; strokeWidth?: number | string }>> = {
   electricity: Zap,
@@ -28,13 +30,18 @@ const CATEGORY_ICONS: Record<string, React.ComponentType<{ className?: string; s
   water: Droplets,
 };
 
-export default function HomePage() {
-  const totals = totalsByScope();
-  const cost = totalCostMetrics();
-  const trend = totalsByMonth();
-  const cats = byCategory().slice(0, 8);
-  const fac = byFacility();
-  const intensity = totals.total / (org.revenue_gbp / 1_000_000);
+export default async function HomePage() {
+  const [totals, cost, trend, catsAll, fac, opportunities, org] = await Promise.all([
+    totalsByScope(),
+    totalCostMetrics(),
+    totalsByMonth(),
+    byCategory(),
+    byFacility(),
+    loadOpportunities(),
+    loadOrg(),
+  ]);
+  const cats = catsAll.slice(0, 8);
+  const intensity = totals.total / (org.revenue_gbp / 1_000_000 || 1);
   const activeInitiatives = opportunities.filter((o) => o.status === "in_progress" || o.status === "approved");
   const topOpps = [...opportunities]
     .sort((a, b) => b.abatement_tco2e - a.abatement_tco2e)
@@ -52,7 +59,7 @@ export default function HomePage() {
               <span>Issue 04 · FY25</span>
             </div>
             <h1 className="font-display text-6xl md:text-7xl tracking-tight leading-[0.95] max-w-3xl">
-              The state of Northfield's carbon ledger.
+              The state of {org.name}'s carbon ledger.
             </h1>
             <p className="mt-5 text-ink-soft text-lg max-w-2xl leading-relaxed font-light">
               A 12-month look at what we emit, what it cost, and where {fmt.gbpShort(cost.waste_cost)} of
@@ -60,8 +67,8 @@ export default function HomePage() {
             </p>
           </div>
           <div className="hidden md:block text-right text-xs text-ink-muted font-mono leading-loose">
-            <div>NORTHFIELD FC</div>
-            <div>FY 2024–2025</div>
+            <div>{org.name.toUpperCase()}</div>
+            <div>{org.fiscal_year}</div>
             <div>Reporting boundary:</div>
             <div>operational control</div>
           </div>

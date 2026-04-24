@@ -1,0 +1,8 @@
+-- Synthetic data for Brentford FC | Generated 2026-04-22T11:17:07.913546
+-- Table: record.emission_consolidated
+
+INSERT INTO record.emission_consolidated (consolidation_id, tenant_id, org_id, facility_id, period_id, scope1_total, scope2_location, scope2_market, scope3_total, total_all_scopes, scope1_cost_usd, scope2_cost_usd, scope3_cost_usd, carbon_price_used, carbon_liability_usd, emission_intensity_revenue, calculated_at) VALUES
+('21ca9b77-d748-552f-8d77-5d0c2a995774', 'cd4ea9a2-9b2b-5b5c-8a1f-16812572de1d', 'ab3c068c-b053-50e1-8ed6-69c590c57274', NULL, 'ee42222c-d035-5b55-8e16-6395487eea21', 386.60, 105.91, 130.83, 99.699, 592.209, 45862, 118371, 119800, 100.00, 59220.90, 3.553, '2026-04-15 10:00:00+00'),
+('e3e196b0-2b29-59fe-ab0f-8cfe4670a970', 'cd4ea9a2-9b2b-5b5c-8a1f-16812572de1d', 'ab3c068c-b053-50e1-8ed6-69c590c57274', '31fd81f5-57ac-52cd-83ec-ad84f87308b7', 'ee42222c-d035-5b55-8e16-6395487eea21', 212.86, 59.50, 73.50, NULL, 272.36, 28837, 66413, NULL, 100.00, 27236.00, NULL, '2026-04-15 10:00:00+00'),
+('f7eba3b4-7b8c-5bd7-93ae-f13a8b497b8c', 'cd4ea9a2-9b2b-5b5c-8a1f-16812572de1d', 'ab3c068c-b053-50e1-8ed6-69c590c57274', '2a5fef53-6cad-5eb0-b647-35eee78e1248', 'ee42222c-d035-5b55-8e16-6395487eea21', 148.12, 35.70, 44.10, NULL, 183.82, 18400, 39848, NULL, 100.00, 18382.00, NULL, '2026-04-15 10:00:00+00'),
+('57152f86-1b13-5c78-b487-1564d05ebed4', 'cd4ea9a2-9b2b-5b5c-8a1f-16812572de1d', 'ab3c068c-b053-50e1-8ed6-69c590c57274', 'efe6764d-a7e0-582c-8e53-2d07bc986327', 'ee42222c-d035-5b55-8e16-6395487eea21', 14.82, 10.71, 13.23, NULL, 25.53, 2889, 11954, NULL, 100.00, 2553.00, NULL, '2026-04-15 10:00:00+00');
