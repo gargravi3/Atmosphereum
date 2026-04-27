@@ -69,56 +69,64 @@ export default async function MaterialityPage() {
           <div className="text-micro uppercase tracking-[0.25em] text-ink-muted mb-3">§ Double-materiality map</div>
           <h3 className="font-display text-2xl tracking-tight mb-6">Impact × financial.</h3>
 
-          <div className="bg-paper-soft border border-rule p-6">
+          <div className="bg-paper-soft border border-rule p-6 pl-12 pt-10">
             <div className="relative aspect-square">
+              {/* Plot frame */}
               <div className="absolute inset-0 border border-ink-muted" />
               <div className="absolute left-0 right-0 top-1/2 border-t border-rule border-dashed" />
               <div className="absolute top-0 bottom-0 left-1/2 border-l border-rule border-dashed" />
 
-              <div className="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] uppercase tracking-widest text-ink-muted">
+              {/* Axis labels */}
+              <div className="absolute -top-7 left-0 right-0 text-center text-[10px] uppercase tracking-widest text-ink-muted">
                 Impact materiality →
               </div>
-              <div className="absolute top-1/2 -left-14 -translate-y-1/2 text-[10px] uppercase tracking-widest text-ink-muted -rotate-90 whitespace-nowrap">
-                Financial materiality →
+              <div className="absolute top-0 bottom-0 -left-7 flex items-center">
+                <div className="text-[10px] uppercase tracking-widest text-ink-muted -rotate-90 whitespace-nowrap origin-center">
+                  Financial materiality →
+                </div>
               </div>
 
-              {topics.map((t) => {
-                const x = (t.impact_score / maxImpact) * 100;
-                const y = 100 - (t.financial_score / maxFin) * 100;
-                const color = PILLAR_COLORS[t.pillar] ?? "slate";
-                const size = Math.max(t.overall_score * 2, 8);
-                return (
-                  <div
-                    key={t.id}
-                    className={cn(
-                      "absolute flex items-center justify-center group cursor-pointer transition-all hover:z-10",
-                      color === "moss" && "text-moss",
-                      color === "ochre" && "text-ochre",
-                      color === "slate" && "text-slate",
-                      color === "ember" && "text-ember"
-                    )}
-                    style={{ left: `${x}%`, top: `${y}%`, transform: "translate(-50%, -50%)" }}
-                  >
+              {/* Inner padded area where bubbles live (4% padding so edge bubbles never clip) */}
+              <div className="absolute inset-[4%]">
+                {topics.map((t) => {
+                  const x = Math.min(Math.max((t.impact_score / maxImpact) * 100, 0), 100);
+                  const y = 100 - Math.min(Math.max((t.financial_score / maxFin) * 100, 0), 100);
+                  const color = PILLAR_COLORS[t.pillar] ?? "slate";
+                  // Constrain bubble size: 10–22px range
+                  const size = Math.min(Math.max(t.overall_score * 1.6 + 8, 10), 22);
+                  return (
                     <div
+                      key={t.id}
                       className={cn(
-                        "rounded-full border-2 transition-all",
-                        color === "moss" && "bg-moss/20 border-moss",
-                        color === "ochre" && "bg-ochre/20 border-ochre",
-                        color === "slate" && "bg-slate/20 border-slate",
-                        color === "ember" && "bg-ember/20 border-ember",
-                        t.is_material && "ring-2 ring-ink/20"
+                        "absolute flex items-center justify-center group cursor-pointer transition-all hover:z-10",
+                        color === "moss" && "text-moss",
+                        color === "ochre" && "text-ochre",
+                        color === "slate" && "text-slate",
+                        color === "ember" && "text-ember"
                       )}
-                      style={{ width: `${size}px`, height: `${size}px` }}
-                    />
-                    <div className="absolute top-full mt-2 opacity-0 group-hover:opacity-100 transition-opacity bg-ink text-paper text-xs px-2 py-1 whitespace-nowrap shadow-lift z-20 font-mono pointer-events-none">
-                      {t.name}
-                      <div className="text-[10px] text-ink-muted">
-                        Impact {fmt.dec(t.impact_score, 1)} · Fin {fmt.dec(t.financial_score, 1)}
+                      style={{ left: `${x}%`, top: `${y}%`, transform: "translate(-50%, -50%)" }}
+                    >
+                      <div
+                        className={cn(
+                          "rounded-full border-2 transition-all",
+                          color === "moss" && "bg-moss/30 border-moss",
+                          color === "ochre" && "bg-ochre/30 border-ochre",
+                          color === "slate" && "bg-slate/30 border-slate",
+                          color === "ember" && "bg-ember/30 border-ember",
+                          t.is_material && "ring-2 ring-ink/20"
+                        )}
+                        style={{ width: `${size}px`, height: `${size}px` }}
+                      />
+                      <div className="absolute top-full mt-2 opacity-0 group-hover:opacity-100 transition-opacity bg-ink text-paper text-xs px-2 py-1 whitespace-nowrap shadow-lift z-20 font-mono pointer-events-none">
+                        {t.name}
+                        <div className="text-[10px] text-ink-muted">
+                          Impact {fmt.dec(t.impact_score, 1)} · Fin {fmt.dec(t.financial_score, 1)}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
             </div>
             <div className="mt-4 flex items-center gap-4 text-xs">
               {(["moss", "ochre", "slate"] as const).map((c) => (
